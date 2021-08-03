@@ -43,15 +43,21 @@ function filterByQuery(query, animalsArray) {
       const result =animalsArray.filter(animal => animal.id===id)[0];
       return result;
   }
-app.get('/api/animals/:id', (req,res) => {
+app.get('/api/animals:id', (req,res) => {
     const result = findById(req.params.id,animals);
     // if(req.query) {
     //     results = filterByQuery(req.query, results);
     // }
    if(result) { res.json(result);
-} else {res.send(404);
+} else {res.sendStatus(status);
 }
 });
 app.listen(3001,() => {
     console.log(`API server now on port 3001!`);
 });
+app.post('/api/animals', (req, res) => {
+    //req.body is where our incoming content will be
+    console.log(req.body);
+    res.json(req.body);
+});
+
